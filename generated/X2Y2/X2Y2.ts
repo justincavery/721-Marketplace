@@ -106,6 +106,32 @@ export class EvFailure__Params {
   }
 }
 
+export class EvInventory extends ethereum.Event {
+  get params(): EvInventory__Params {
+    return new EvInventory__Params(this);
+  }
+}
+
+export class EvInventory__Params {
+  _event: EvInventory;
+
+  constructor(event: EvInventory) {
+    this._event = event;
+  }
+
+  get topic0(): Bytes {
+    return this._event.parameters[0].value.toBytes();
+  }
+
+  get topic1(): Bytes {
+    return this._event.parameters[1].value.toBytes();
+  }
+
+  get data(): Bytes {
+    return this._event.parameters[2].value.toBytes();
+  }
+}
+
 export class EvFeeCapUpdate extends ethereum.Event {
   get params(): EvFeeCapUpdate__Params {
     return new EvFeeCapUpdate__Params(this);

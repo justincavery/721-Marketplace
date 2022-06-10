@@ -88,6 +88,31 @@
     "type": "event"
   },
   {
+    "anonymous": true,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes",
+        "name": "topic0",
+        "type": "bytes"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes",
+        "name": "topic1",
+        "type": "bytes"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "EvInventory",
+    "type": "event"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
