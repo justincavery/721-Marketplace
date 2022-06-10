@@ -92,15 +92,15 @@
     "inputs": [
       {
         "indexed": true,
-        "internalType": "bytes",
+        "internalType": "bytes32",
         "name": "topic0",
-        "type": "bytes"
+        "type": "bytes32"
       },
       {
         "indexed": true,
-        "internalType": "bytes",
+        "internalType": "bytes32",
         "name": "topic1",
-        "type": "bytes"
+        "type": "bytes32"
       },
       {
         "indexed": false,
