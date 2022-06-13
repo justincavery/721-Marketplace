@@ -283,7 +283,10 @@ type weeklyCollectionSnapshot @entity {
 
 type wethTransaction @entity {
 
-    " Hash for weth contained transaction "
+    " set to 1 for easy loading "
     id: ID!
+
+    " Hash for weth contained transaction "
+    transaction: String 
 
 }
