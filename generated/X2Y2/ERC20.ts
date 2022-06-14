@@ -36,6 +36,298 @@ export class Approval__Params {
   }
 }
 
+export class ApprovalByPartition extends ethereum.Event {
+  get params(): ApprovalByPartition__Params {
+    return new ApprovalByPartition__Params(this);
+  }
+}
+
+export class ApprovalByPartition__Params {
+  _event: ApprovalByPartition;
+
+  constructor(event: ApprovalByPartition) {
+    this._event = event;
+  }
+
+  get partition(): Bytes {
+    return this._event.parameters[0].value.toBytes();
+  }
+
+  get owner(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get spender(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+
+  get value(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+}
+
+export class AuthorizedOperator extends ethereum.Event {
+  get params(): AuthorizedOperator__Params {
+    return new AuthorizedOperator__Params(this);
+  }
+}
+
+export class AuthorizedOperator__Params {
+  _event: AuthorizedOperator;
+
+  constructor(event: AuthorizedOperator) {
+    this._event = event;
+  }
+
+  get operator(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get tokenHolder(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+}
+
+export class AuthorizedOperatorByPartition extends ethereum.Event {
+  get params(): AuthorizedOperatorByPartition__Params {
+    return new AuthorizedOperatorByPartition__Params(this);
+  }
+}
+
+export class AuthorizedOperatorByPartition__Params {
+  _event: AuthorizedOperatorByPartition;
+
+  constructor(event: AuthorizedOperatorByPartition) {
+    this._event = event;
+  }
+
+  get partition(): Bytes {
+    return this._event.parameters[0].value.toBytes();
+  }
+
+  get operator(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get tokenHolder(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+}
+
+export class ChangedPartition extends ethereum.Event {
+  get params(): ChangedPartition__Params {
+    return new ChangedPartition__Params(this);
+  }
+}
+
+export class ChangedPartition__Params {
+  _event: ChangedPartition;
+
+  constructor(event: ChangedPartition) {
+    this._event = event;
+  }
+
+  get fromPartition(): Bytes {
+    return this._event.parameters[0].value.toBytes();
+  }
+
+  get toPartition(): Bytes {
+    return this._event.parameters[1].value.toBytes();
+  }
+
+  get value(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+}
+
+export class CollateralManagerRegistered extends ethereum.Event {
+  get params(): CollateralManagerRegistered__Params {
+    return new CollateralManagerRegistered__Params(this);
+  }
+}
+
+export class CollateralManagerRegistered__Params {
+  _event: CollateralManagerRegistered;
+
+  constructor(event: CollateralManagerRegistered) {
+    this._event = event;
+  }
+
+  get collateralManager(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+}
+
+export class Minted extends ethereum.Event {
+  get params(): Minted__Params {
+    return new Minted__Params(this);
+  }
+}
+
+export class Minted__Params {
+  _event: Minted;
+
+  constructor(event: Minted) {
+    this._event = event;
+  }
+
+  get operator(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get to(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get value(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+
+  get data(): Bytes {
+    return this._event.parameters[3].value.toBytes();
+  }
+}
+
+export class OwnerUpdate extends ethereum.Event {
+  get params(): OwnerUpdate__Params {
+    return new OwnerUpdate__Params(this);
+  }
+}
+
+export class OwnerUpdate__Params {
+  _event: OwnerUpdate;
+
+  constructor(event: OwnerUpdate) {
+    this._event = event;
+  }
+
+  get oldValue(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get newValue(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+}
+
+export class OwnershipTransferAuthorization extends ethereum.Event {
+  get params(): OwnershipTransferAuthorization__Params {
+    return new OwnershipTransferAuthorization__Params(this);
+  }
+}
+
+export class OwnershipTransferAuthorization__Params {
+  _event: OwnershipTransferAuthorization;
+
+  constructor(event: OwnershipTransferAuthorization) {
+    this._event = event;
+  }
+
+  get authorizedAddress(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+}
+
+export class PartitionStrategySet extends ethereum.Event {
+  get params(): PartitionStrategySet__Params {
+    return new PartitionStrategySet__Params(this);
+  }
+}
+
+export class PartitionStrategySet__Params {
+  _event: PartitionStrategySet;
+
+  constructor(event: PartitionStrategySet) {
+    this._event = event;
+  }
+
+  get flag(): Bytes {
+    return this._event.parameters[0].value.toBytes();
+  }
+
+  get name(): string {
+    return this._event.parameters[1].value.toString();
+  }
+
+  get implementation(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+}
+
+export class RevokedOperator extends ethereum.Event {
+  get params(): RevokedOperator__Params {
+    return new RevokedOperator__Params(this);
+  }
+}
+
+export class RevokedOperator__Params {
+  _event: RevokedOperator;
+
+  constructor(event: RevokedOperator) {
+    this._event = event;
+  }
+
+  get operator(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get tokenHolder(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+}
+
+export class RevokedOperatorByPartition extends ethereum.Event {
+  get params(): RevokedOperatorByPartition__Params {
+    return new RevokedOperatorByPartition__Params(this);
+  }
+}
+
+export class RevokedOperatorByPartition__Params {
+  _event: RevokedOperatorByPartition;
+
+  constructor(event: RevokedOperatorByPartition) {
+    this._event = event;
+  }
+
+  get partition(): Bytes {
+    return this._event.parameters[0].value.toBytes();
+  }
+
+  get operator(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get tokenHolder(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+}
+
+export class Swap extends ethereum.Event {
+  get params(): Swap__Params {
+    return new Swap__Params(this);
+  }
+}
+
+export class Swap__Params {
+  _event: Swap;
+
+  constructor(event: Swap) {
+    this._event = event;
+  }
+
+  get operator(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get from(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get value(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+}
+
 export class Transfer extends ethereum.Event {
   get params(): Transfer__Params {
     return new Transfer__Params(this);
@@ -62,26 +354,71 @@ export class Transfer__Params {
   }
 }
 
+export class TransferByPartition extends ethereum.Event {
+  get params(): TransferByPartition__Params {
+    return new TransferByPartition__Params(this);
+  }
+}
+
+export class TransferByPartition__Params {
+  _event: TransferByPartition;
+
+  constructor(event: TransferByPartition) {
+    this._event = event;
+  }
+
+  get fromPartition(): Bytes {
+    return this._event.parameters[0].value.toBytes();
+  }
+
+  get operator(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get from(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+
+  get to(): Address {
+    return this._event.parameters[3].value.toAddress();
+  }
+
+  get value(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get data(): Bytes {
+    return this._event.parameters[5].value.toBytes();
+  }
+
+  get operatorData(): Bytes {
+    return this._event.parameters[6].value.toBytes();
+  }
+}
+
 export class ERC20 extends ethereum.SmartContract {
   static bind(address: Address): ERC20 {
     return new ERC20("ERC20", address);
   }
 
-  allowance(owner: Address, spender: Address): BigInt {
+  allowance(_owner: Address, _spender: Address): BigInt {
     let result = super.call(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(_owner), ethereum.Value.fromAddress(_spender)]
     );
 
     return result[0].toBigInt();
   }
 
-  try_allowance(owner: Address, spender: Address): ethereum.CallResult<BigInt> {
+  try_allowance(
+    _owner: Address,
+    _spender: Address
+  ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(_owner), ethereum.Value.fromAddress(_spender)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -90,19 +427,58 @@ export class ERC20 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  approve(spender: Address, amount: BigInt): boolean {
+  allowanceByPartition(
+    _partition: Bytes,
+    _owner: Address,
+    _spender: Address
+  ): BigInt {
+    let result = super.call(
+      "allowanceByPartition",
+      "allowanceByPartition(bytes32,address,address):(uint256)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_owner),
+        ethereum.Value.fromAddress(_spender)
+      ]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_allowanceByPartition(
+    _partition: Bytes,
+    _owner: Address,
+    _spender: Address
+  ): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "allowanceByPartition",
+      "allowanceByPartition(bytes32,address,address):(uint256)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_owner),
+        ethereum.Value.fromAddress(_spender)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  approve(_spender: Address, _value: BigInt): boolean {
     let result = super.call("approve", "approve(address,uint256):(bool)", [
-      ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromAddress(_spender),
+      ethereum.Value.fromUnsignedBigInt(_value)
     ]);
 
     return result[0].toBoolean();
   }
 
-  try_approve(spender: Address, amount: BigInt): ethereum.CallResult<boolean> {
+  try_approve(_spender: Address, _value: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("approve", "approve(address,uint256):(bool)", [
-      ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromAddress(_spender),
+      ethereum.Value.fromUnsignedBigInt(_value)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -111,23 +487,175 @@ export class ERC20 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  balanceOf(account: Address): BigInt {
+  approveByPartition(
+    _partition: Bytes,
+    _spender: Address,
+    _value: BigInt
+  ): boolean {
+    let result = super.call(
+      "approveByPartition",
+      "approveByPartition(bytes32,address,uint256):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_spender),
+        ethereum.Value.fromUnsignedBigInt(_value)
+      ]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_approveByPartition(
+    _partition: Bytes,
+    _spender: Address,
+    _value: BigInt
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "approveByPartition",
+      "approveByPartition(bytes32,address,uint256):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_spender),
+        ethereum.Value.fromUnsignedBigInt(_value)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  authorizedNewOwner(): Address {
+    let result = super.call(
+      "authorizedNewOwner",
+      "authorizedNewOwner():(address)",
+      []
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_authorizedNewOwner(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "authorizedNewOwner",
+      "authorizedNewOwner():(address)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  balanceOf(_tokenHolder: Address): BigInt {
     let result = super.call("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(_tokenHolder)
     ]);
 
     return result[0].toBigInt();
   }
 
-  try_balanceOf(account: Address): ethereum.CallResult<BigInt> {
+  try_balanceOf(_tokenHolder: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(_tokenHolder)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  balanceOfByPartition(_partition: Bytes, _tokenHolder: Address): BigInt {
+    let result = super.call(
+      "balanceOfByPartition",
+      "balanceOfByPartition(bytes32,address):(uint256)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_tokenHolder)
+      ]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_balanceOfByPartition(
+    _partition: Bytes,
+    _tokenHolder: Address
+  ): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "balanceOfByPartition",
+      "balanceOfByPartition(bytes32,address):(uint256)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_tokenHolder)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  canImplementInterfaceForAddress(
+    _interfaceHash: Bytes,
+    param1: Address
+  ): Bytes {
+    let result = super.call(
+      "canImplementInterfaceForAddress",
+      "canImplementInterfaceForAddress(bytes32,address):(bytes32)",
+      [
+        ethereum.Value.fromFixedBytes(_interfaceHash),
+        ethereum.Value.fromAddress(param1)
+      ]
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_canImplementInterfaceForAddress(
+    _interfaceHash: Bytes,
+    param1: Address
+  ): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "canImplementInterfaceForAddress",
+      "canImplementInterfaceForAddress(bytes32,address):(bytes32)",
+      [
+        ethereum.Value.fromFixedBytes(_interfaceHash),
+        ethereum.Value.fromAddress(param1)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  collateralManagers(param0: BigInt): Address {
+    let result = super.call(
+      "collateralManagers",
+      "collateralManagers(uint256):(address)",
+      [ethereum.Value.fromUnsignedBigInt(param0)]
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_collateralManagers(param0: BigInt): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "collateralManagers",
+      "collateralManagers(uint256):(address)",
+      [ethereum.Value.fromUnsignedBigInt(param0)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
   decimals(): i32 {
@@ -145,13 +673,13 @@ export class ERC20 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toI32());
   }
 
-  decreaseAllowance(spender: Address, subtractedValue: BigInt): boolean {
+  decreaseAllowance(_spender: Address, _subtractedValue: BigInt): boolean {
     let result = super.call(
       "decreaseAllowance",
       "decreaseAllowance(address,uint256):(bool)",
       [
-        ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
+        ethereum.Value.fromAddress(_spender),
+        ethereum.Value.fromUnsignedBigInt(_subtractedValue)
       ]
     );
 
@@ -159,15 +687,15 @@ export class ERC20 extends ethereum.SmartContract {
   }
 
   try_decreaseAllowance(
-    spender: Address,
-    subtractedValue: BigInt
+    _spender: Address,
+    _subtractedValue: BigInt
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "decreaseAllowance",
       "decreaseAllowance(address,uint256):(bool)",
       [
-        ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
+        ethereum.Value.fromAddress(_spender),
+        ethereum.Value.fromUnsignedBigInt(_subtractedValue)
       ]
     );
     if (result.reverted) {
@@ -177,13 +705,90 @@ export class ERC20 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  increaseAllowance(spender: Address, addedValue: BigInt): boolean {
+  decreaseAllowanceByPartition(
+    _partition: Bytes,
+    _spender: Address,
+    _subtractedValue: BigInt
+  ): boolean {
+    let result = super.call(
+      "decreaseAllowanceByPartition",
+      "decreaseAllowanceByPartition(bytes32,address,uint256):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_spender),
+        ethereum.Value.fromUnsignedBigInt(_subtractedValue)
+      ]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_decreaseAllowanceByPartition(
+    _partition: Bytes,
+    _spender: Address,
+    _subtractedValue: BigInt
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "decreaseAllowanceByPartition",
+      "decreaseAllowanceByPartition(bytes32,address,uint256):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_spender),
+        ethereum.Value.fromUnsignedBigInt(_subtractedValue)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  defaultPartition(): Bytes {
+    let result = super.call(
+      "defaultPartition",
+      "defaultPartition():(bytes32)",
+      []
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_defaultPartition(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "defaultPartition",
+      "defaultPartition():(bytes32)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  granularity(): BigInt {
+    let result = super.call("granularity", "granularity():(uint256)", []);
+
+    return result[0].toBigInt();
+  }
+
+  try_granularity(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall("granularity", "granularity():(uint256)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  increaseAllowance(_spender: Address, _addedValue: BigInt): boolean {
     let result = super.call(
       "increaseAllowance",
       "increaseAllowance(address,uint256):(bool)",
       [
-        ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
+        ethereum.Value.fromAddress(_spender),
+        ethereum.Value.fromUnsignedBigInt(_addedValue)
       ]
     );
 
@@ -191,16 +796,213 @@ export class ERC20 extends ethereum.SmartContract {
   }
 
   try_increaseAllowance(
-    spender: Address,
-    addedValue: BigInt
+    _spender: Address,
+    _addedValue: BigInt
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "increaseAllowance",
       "increaseAllowance(address,uint256):(bool)",
       [
-        ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
+        ethereum.Value.fromAddress(_spender),
+        ethereum.Value.fromUnsignedBigInt(_addedValue)
       ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  increaseAllowanceByPartition(
+    _partition: Bytes,
+    _spender: Address,
+    _addedValue: BigInt
+  ): boolean {
+    let result = super.call(
+      "increaseAllowanceByPartition",
+      "increaseAllowanceByPartition(bytes32,address,uint256):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_spender),
+        ethereum.Value.fromUnsignedBigInt(_addedValue)
+      ]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_increaseAllowanceByPartition(
+    _partition: Bytes,
+    _spender: Address,
+    _addedValue: BigInt
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "increaseAllowanceByPartition",
+      "increaseAllowanceByPartition(bytes32,address,uint256):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_spender),
+        ethereum.Value.fromUnsignedBigInt(_addedValue)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  isCollateralManager(_collateralManager: Address): boolean {
+    let result = super.call(
+      "isCollateralManager",
+      "isCollateralManager(address):(bool)",
+      [ethereum.Value.fromAddress(_collateralManager)]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_isCollateralManager(
+    _collateralManager: Address
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "isCollateralManager",
+      "isCollateralManager(address):(bool)",
+      [ethereum.Value.fromAddress(_collateralManager)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  isOperator(_operator: Address, _tokenHolder: Address): boolean {
+    let result = super.call(
+      "isOperator",
+      "isOperator(address,address):(bool)",
+      [
+        ethereum.Value.fromAddress(_operator),
+        ethereum.Value.fromAddress(_tokenHolder)
+      ]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_isOperator(
+    _operator: Address,
+    _tokenHolder: Address
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "isOperator",
+      "isOperator(address,address):(bool)",
+      [
+        ethereum.Value.fromAddress(_operator),
+        ethereum.Value.fromAddress(_tokenHolder)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  isOperatorForCollateralManager(
+    _partition: Bytes,
+    _operator: Address,
+    _collateralManager: Address
+  ): boolean {
+    let result = super.call(
+      "isOperatorForCollateralManager",
+      "isOperatorForCollateralManager(bytes32,address,address):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_operator),
+        ethereum.Value.fromAddress(_collateralManager)
+      ]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_isOperatorForCollateralManager(
+    _partition: Bytes,
+    _operator: Address,
+    _collateralManager: Address
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "isOperatorForCollateralManager",
+      "isOperatorForCollateralManager(bytes32,address,address):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_operator),
+        ethereum.Value.fromAddress(_collateralManager)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  isOperatorForPartition(
+    _partition: Bytes,
+    _operator: Address,
+    _tokenHolder: Address
+  ): boolean {
+    let result = super.call(
+      "isOperatorForPartition",
+      "isOperatorForPartition(bytes32,address,address):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_operator),
+        ethereum.Value.fromAddress(_tokenHolder)
+      ]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_isOperatorForPartition(
+    _partition: Bytes,
+    _operator: Address,
+    _tokenHolder: Address
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "isOperatorForPartition",
+      "isOperatorForPartition(bytes32,address,address):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_operator),
+        ethereum.Value.fromAddress(_tokenHolder)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  isPartitionStrategy(_prefix: Bytes): boolean {
+    let result = super.call(
+      "isPartitionStrategy",
+      "isPartitionStrategy(bytes4):(bool)",
+      [ethereum.Value.fromFixedBytes(_prefix)]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_isPartitionStrategy(_prefix: Bytes): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "isPartitionStrategy",
+      "isPartitionStrategy(bytes4):(bool)",
+      [ethereum.Value.fromFixedBytes(_prefix)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -224,6 +1026,105 @@ export class ERC20 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toString());
   }
 
+  owner(): Address {
+    let result = super.call("owner", "owner():(address)", []);
+
+    return result[0].toAddress();
+  }
+
+  try_owner(): ethereum.CallResult<Address> {
+    let result = super.tryCall("owner", "owner():(address)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  partitionStrategies(param0: BigInt): Bytes {
+    let result = super.call(
+      "partitionStrategies",
+      "partitionStrategies(uint256):(bytes4)",
+      [ethereum.Value.fromUnsignedBigInt(param0)]
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_partitionStrategies(param0: BigInt): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "partitionStrategies",
+      "partitionStrategies(uint256):(bytes4)",
+      [ethereum.Value.fromUnsignedBigInt(param0)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  partitionsOf(_tokenHolder: Address): Array<Bytes> {
+    let result = super.call(
+      "partitionsOf",
+      "partitionsOf(address):(bytes32[])",
+      [ethereum.Value.fromAddress(_tokenHolder)]
+    );
+
+    return result[0].toBytesArray();
+  }
+
+  try_partitionsOf(_tokenHolder: Address): ethereum.CallResult<Array<Bytes>> {
+    let result = super.tryCall(
+      "partitionsOf",
+      "partitionsOf(address):(bytes32[])",
+      [ethereum.Value.fromAddress(_tokenHolder)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytesArray());
+  }
+
+  swapToken(): Address {
+    let result = super.call("swapToken", "swapToken():(address)", []);
+
+    return result[0].toAddress();
+  }
+
+  try_swapToken(): ethereum.CallResult<Address> {
+    let result = super.tryCall("swapToken", "swapToken():(address)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  swapTokenGraveyard(): Address {
+    let result = super.call(
+      "swapTokenGraveyard",
+      "swapTokenGraveyard():(address)",
+      []
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_swapTokenGraveyard(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "swapTokenGraveyard",
+      "swapTokenGraveyard():(address)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
   symbol(): string {
     let result = super.call("symbol", "symbol():(string)", []);
 
@@ -237,6 +1138,29 @@ export class ERC20 extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
+  totalPartitions(): Array<Bytes> {
+    let result = super.call(
+      "totalPartitions",
+      "totalPartitions():(bytes32[])",
+      []
+    );
+
+    return result[0].toBytesArray();
+  }
+
+  try_totalPartitions(): ethereum.CallResult<Array<Bytes>> {
+    let result = super.tryCall(
+      "totalPartitions",
+      "totalPartitions():(bytes32[])",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytesArray());
   }
 
   totalSupply(): BigInt {
@@ -254,19 +1178,42 @@ export class ERC20 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  transfer(to: Address, amount: BigInt): boolean {
+  totalSupplyByPartition(param0: Bytes): BigInt {
+    let result = super.call(
+      "totalSupplyByPartition",
+      "totalSupplyByPartition(bytes32):(uint256)",
+      [ethereum.Value.fromFixedBytes(param0)]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_totalSupplyByPartition(param0: Bytes): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "totalSupplyByPartition",
+      "totalSupplyByPartition(bytes32):(uint256)",
+      [ethereum.Value.fromFixedBytes(param0)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  transfer(_to: Address, _value: BigInt): boolean {
     let result = super.call("transfer", "transfer(address,uint256):(bool)", [
-      ethereum.Value.fromAddress(to),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromAddress(_to),
+      ethereum.Value.fromUnsignedBigInt(_value)
     ]);
 
     return result[0].toBoolean();
   }
 
-  try_transfer(to: Address, amount: BigInt): ethereum.CallResult<boolean> {
+  try_transfer(_to: Address, _value: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("transfer", "transfer(address,uint256):(bool)", [
-      ethereum.Value.fromAddress(to),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromAddress(_to),
+      ethereum.Value.fromUnsignedBigInt(_value)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -275,14 +1222,65 @@ export class ERC20 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  transferFrom(from: Address, to: Address, amount: BigInt): boolean {
+  transferByPartition(
+    _partition: Bytes,
+    _from: Address,
+    _to: Address,
+    _value: BigInt,
+    _data: Bytes,
+    _operatorData: Bytes
+  ): Bytes {
+    let result = super.call(
+      "transferByPartition",
+      "transferByPartition(bytes32,address,address,uint256,bytes,bytes):(bytes32)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_from),
+        ethereum.Value.fromAddress(_to),
+        ethereum.Value.fromUnsignedBigInt(_value),
+        ethereum.Value.fromBytes(_data),
+        ethereum.Value.fromBytes(_operatorData)
+      ]
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_transferByPartition(
+    _partition: Bytes,
+    _from: Address,
+    _to: Address,
+    _value: BigInt,
+    _data: Bytes,
+    _operatorData: Bytes
+  ): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "transferByPartition",
+      "transferByPartition(bytes32,address,address,uint256,bytes,bytes):(bytes32)",
+      [
+        ethereum.Value.fromFixedBytes(_partition),
+        ethereum.Value.fromAddress(_from),
+        ethereum.Value.fromAddress(_to),
+        ethereum.Value.fromUnsignedBigInt(_value),
+        ethereum.Value.fromBytes(_data),
+        ethereum.Value.fromBytes(_operatorData)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  transferFrom(_from: Address, _to: Address, _value: BigInt): boolean {
     let result = super.call(
       "transferFrom",
       "transferFrom(address,address,uint256):(bool)",
       [
-        ethereum.Value.fromAddress(from),
-        ethereum.Value.fromAddress(to),
-        ethereum.Value.fromUnsignedBigInt(amount)
+        ethereum.Value.fromAddress(_from),
+        ethereum.Value.fromAddress(_to),
+        ethereum.Value.fromUnsignedBigInt(_value)
       ]
     );
 
@@ -290,17 +1288,17 @@ export class ERC20 extends ethereum.SmartContract {
   }
 
   try_transferFrom(
-    from: Address,
-    to: Address,
-    amount: BigInt
+    _from: Address,
+    _to: Address,
+    _value: BigInt
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "transferFrom",
       "transferFrom(address,address,uint256):(bool)",
       [
-        ethereum.Value.fromAddress(from),
-        ethereum.Value.fromAddress(to),
-        ethereum.Value.fromUnsignedBigInt(amount)
+        ethereum.Value.fromAddress(_from),
+        ethereum.Value.fromAddress(_to),
+        ethereum.Value.fromUnsignedBigInt(_value)
       ]
     );
     if (result.reverted) {
@@ -328,12 +1326,16 @@ export class ConstructorCall__Inputs {
     this._call = call;
   }
 
-  get name_(): string {
-    return this._call.inputValues[0].value.toString();
+  get _swapTokenAddress_(): Address {
+    return this._call.inputValues[0].value.toAddress();
   }
 
-  get symbol_(): string {
+  get _name_(): string {
     return this._call.inputValues[1].value.toString();
+  }
+
+  get _symbol_(): string {
+    return this._call.inputValues[2].value.toString();
   }
 }
 
@@ -362,11 +1364,11 @@ export class ApproveCall__Inputs {
     this._call = call;
   }
 
-  get spender(): Address {
+  get _spender(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get amount(): BigInt {
+  get _value(): BigInt {
     return this._call.inputValues[1].value.toBigInt();
   }
 }
@@ -380,6 +1382,168 @@ export class ApproveCall__Outputs {
 
   get value0(): boolean {
     return this._call.outputValues[0].value.toBoolean();
+  }
+}
+
+export class ApproveByPartitionCall extends ethereum.Call {
+  get inputs(): ApproveByPartitionCall__Inputs {
+    return new ApproveByPartitionCall__Inputs(this);
+  }
+
+  get outputs(): ApproveByPartitionCall__Outputs {
+    return new ApproveByPartitionCall__Outputs(this);
+  }
+}
+
+export class ApproveByPartitionCall__Inputs {
+  _call: ApproveByPartitionCall;
+
+  constructor(call: ApproveByPartitionCall) {
+    this._call = call;
+  }
+
+  get _partition(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
+  }
+
+  get _spender(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+
+  get _value(): BigInt {
+    return this._call.inputValues[2].value.toBigInt();
+  }
+}
+
+export class ApproveByPartitionCall__Outputs {
+  _call: ApproveByPartitionCall;
+
+  constructor(call: ApproveByPartitionCall) {
+    this._call = call;
+  }
+
+  get value0(): boolean {
+    return this._call.outputValues[0].value.toBoolean();
+  }
+}
+
+export class AssumeOwnershipCall extends ethereum.Call {
+  get inputs(): AssumeOwnershipCall__Inputs {
+    return new AssumeOwnershipCall__Inputs(this);
+  }
+
+  get outputs(): AssumeOwnershipCall__Outputs {
+    return new AssumeOwnershipCall__Outputs(this);
+  }
+}
+
+export class AssumeOwnershipCall__Inputs {
+  _call: AssumeOwnershipCall;
+
+  constructor(call: AssumeOwnershipCall) {
+    this._call = call;
+  }
+}
+
+export class AssumeOwnershipCall__Outputs {
+  _call: AssumeOwnershipCall;
+
+  constructor(call: AssumeOwnershipCall) {
+    this._call = call;
+  }
+}
+
+export class AuthorizeOperatorCall extends ethereum.Call {
+  get inputs(): AuthorizeOperatorCall__Inputs {
+    return new AuthorizeOperatorCall__Inputs(this);
+  }
+
+  get outputs(): AuthorizeOperatorCall__Outputs {
+    return new AuthorizeOperatorCall__Outputs(this);
+  }
+}
+
+export class AuthorizeOperatorCall__Inputs {
+  _call: AuthorizeOperatorCall;
+
+  constructor(call: AuthorizeOperatorCall) {
+    this._call = call;
+  }
+
+  get _operator(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class AuthorizeOperatorCall__Outputs {
+  _call: AuthorizeOperatorCall;
+
+  constructor(call: AuthorizeOperatorCall) {
+    this._call = call;
+  }
+}
+
+export class AuthorizeOperatorByPartitionCall extends ethereum.Call {
+  get inputs(): AuthorizeOperatorByPartitionCall__Inputs {
+    return new AuthorizeOperatorByPartitionCall__Inputs(this);
+  }
+
+  get outputs(): AuthorizeOperatorByPartitionCall__Outputs {
+    return new AuthorizeOperatorByPartitionCall__Outputs(this);
+  }
+}
+
+export class AuthorizeOperatorByPartitionCall__Inputs {
+  _call: AuthorizeOperatorByPartitionCall;
+
+  constructor(call: AuthorizeOperatorByPartitionCall) {
+    this._call = call;
+  }
+
+  get _partition(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
+  }
+
+  get _operator(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+}
+
+export class AuthorizeOperatorByPartitionCall__Outputs {
+  _call: AuthorizeOperatorByPartitionCall;
+
+  constructor(call: AuthorizeOperatorByPartitionCall) {
+    this._call = call;
+  }
+}
+
+export class AuthorizeOwnershipTransferCall extends ethereum.Call {
+  get inputs(): AuthorizeOwnershipTransferCall__Inputs {
+    return new AuthorizeOwnershipTransferCall__Inputs(this);
+  }
+
+  get outputs(): AuthorizeOwnershipTransferCall__Outputs {
+    return new AuthorizeOwnershipTransferCall__Outputs(this);
+  }
+}
+
+export class AuthorizeOwnershipTransferCall__Inputs {
+  _call: AuthorizeOwnershipTransferCall;
+
+  constructor(call: AuthorizeOwnershipTransferCall) {
+    this._call = call;
+  }
+
+  get _authorizedAddress(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class AuthorizeOwnershipTransferCall__Outputs {
+  _call: AuthorizeOwnershipTransferCall;
+
+  constructor(call: AuthorizeOwnershipTransferCall) {
+    this._call = call;
   }
 }
 
@@ -400,11 +1564,11 @@ export class DecreaseAllowanceCall__Inputs {
     this._call = call;
   }
 
-  get spender(): Address {
+  get _spender(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get subtractedValue(): BigInt {
+  get _subtractedValue(): BigInt {
     return this._call.inputValues[1].value.toBigInt();
   }
 }
@@ -413,6 +1577,48 @@ export class DecreaseAllowanceCall__Outputs {
   _call: DecreaseAllowanceCall;
 
   constructor(call: DecreaseAllowanceCall) {
+    this._call = call;
+  }
+
+  get value0(): boolean {
+    return this._call.outputValues[0].value.toBoolean();
+  }
+}
+
+export class DecreaseAllowanceByPartitionCall extends ethereum.Call {
+  get inputs(): DecreaseAllowanceByPartitionCall__Inputs {
+    return new DecreaseAllowanceByPartitionCall__Inputs(this);
+  }
+
+  get outputs(): DecreaseAllowanceByPartitionCall__Outputs {
+    return new DecreaseAllowanceByPartitionCall__Outputs(this);
+  }
+}
+
+export class DecreaseAllowanceByPartitionCall__Inputs {
+  _call: DecreaseAllowanceByPartitionCall;
+
+  constructor(call: DecreaseAllowanceByPartitionCall) {
+    this._call = call;
+  }
+
+  get _partition(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
+  }
+
+  get _spender(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+
+  get _subtractedValue(): BigInt {
+    return this._call.inputValues[2].value.toBigInt();
+  }
+}
+
+export class DecreaseAllowanceByPartitionCall__Outputs {
+  _call: DecreaseAllowanceByPartitionCall;
+
+  constructor(call: DecreaseAllowanceByPartitionCall) {
     this._call = call;
   }
 
@@ -438,11 +1644,11 @@ export class IncreaseAllowanceCall__Inputs {
     this._call = call;
   }
 
-  get spender(): Address {
+  get _spender(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get addedValue(): BigInt {
+  get _addedValue(): BigInt {
     return this._call.inputValues[1].value.toBigInt();
   }
 }
@@ -456,6 +1662,202 @@ export class IncreaseAllowanceCall__Outputs {
 
   get value0(): boolean {
     return this._call.outputValues[0].value.toBoolean();
+  }
+}
+
+export class IncreaseAllowanceByPartitionCall extends ethereum.Call {
+  get inputs(): IncreaseAllowanceByPartitionCall__Inputs {
+    return new IncreaseAllowanceByPartitionCall__Inputs(this);
+  }
+
+  get outputs(): IncreaseAllowanceByPartitionCall__Outputs {
+    return new IncreaseAllowanceByPartitionCall__Outputs(this);
+  }
+}
+
+export class IncreaseAllowanceByPartitionCall__Inputs {
+  _call: IncreaseAllowanceByPartitionCall;
+
+  constructor(call: IncreaseAllowanceByPartitionCall) {
+    this._call = call;
+  }
+
+  get _partition(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
+  }
+
+  get _spender(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+
+  get _addedValue(): BigInt {
+    return this._call.inputValues[2].value.toBigInt();
+  }
+}
+
+export class IncreaseAllowanceByPartitionCall__Outputs {
+  _call: IncreaseAllowanceByPartitionCall;
+
+  constructor(call: IncreaseAllowanceByPartitionCall) {
+    this._call = call;
+  }
+
+  get value0(): boolean {
+    return this._call.outputValues[0].value.toBoolean();
+  }
+}
+
+export class RegisterCollateralManagerCall extends ethereum.Call {
+  get inputs(): RegisterCollateralManagerCall__Inputs {
+    return new RegisterCollateralManagerCall__Inputs(this);
+  }
+
+  get outputs(): RegisterCollateralManagerCall__Outputs {
+    return new RegisterCollateralManagerCall__Outputs(this);
+  }
+}
+
+export class RegisterCollateralManagerCall__Inputs {
+  _call: RegisterCollateralManagerCall;
+
+  constructor(call: RegisterCollateralManagerCall) {
+    this._call = call;
+  }
+}
+
+export class RegisterCollateralManagerCall__Outputs {
+  _call: RegisterCollateralManagerCall;
+
+  constructor(call: RegisterCollateralManagerCall) {
+    this._call = call;
+  }
+}
+
+export class RevokeOperatorCall extends ethereum.Call {
+  get inputs(): RevokeOperatorCall__Inputs {
+    return new RevokeOperatorCall__Inputs(this);
+  }
+
+  get outputs(): RevokeOperatorCall__Outputs {
+    return new RevokeOperatorCall__Outputs(this);
+  }
+}
+
+export class RevokeOperatorCall__Inputs {
+  _call: RevokeOperatorCall;
+
+  constructor(call: RevokeOperatorCall) {
+    this._call = call;
+  }
+
+  get _operator(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class RevokeOperatorCall__Outputs {
+  _call: RevokeOperatorCall;
+
+  constructor(call: RevokeOperatorCall) {
+    this._call = call;
+  }
+}
+
+export class RevokeOperatorByPartitionCall extends ethereum.Call {
+  get inputs(): RevokeOperatorByPartitionCall__Inputs {
+    return new RevokeOperatorByPartitionCall__Inputs(this);
+  }
+
+  get outputs(): RevokeOperatorByPartitionCall__Outputs {
+    return new RevokeOperatorByPartitionCall__Outputs(this);
+  }
+}
+
+export class RevokeOperatorByPartitionCall__Inputs {
+  _call: RevokeOperatorByPartitionCall;
+
+  constructor(call: RevokeOperatorByPartitionCall) {
+    this._call = call;
+  }
+
+  get _partition(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
+  }
+
+  get _operator(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+}
+
+export class RevokeOperatorByPartitionCall__Outputs {
+  _call: RevokeOperatorByPartitionCall;
+
+  constructor(call: RevokeOperatorByPartitionCall) {
+    this._call = call;
+  }
+}
+
+export class SetPartitionStrategyCall extends ethereum.Call {
+  get inputs(): SetPartitionStrategyCall__Inputs {
+    return new SetPartitionStrategyCall__Inputs(this);
+  }
+
+  get outputs(): SetPartitionStrategyCall__Outputs {
+    return new SetPartitionStrategyCall__Outputs(this);
+  }
+}
+
+export class SetPartitionStrategyCall__Inputs {
+  _call: SetPartitionStrategyCall;
+
+  constructor(call: SetPartitionStrategyCall) {
+    this._call = call;
+  }
+
+  get _prefix(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
+  }
+
+  get _implementation(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+}
+
+export class SetPartitionStrategyCall__Outputs {
+  _call: SetPartitionStrategyCall;
+
+  constructor(call: SetPartitionStrategyCall) {
+    this._call = call;
+  }
+}
+
+export class SwapCall extends ethereum.Call {
+  get inputs(): SwapCall__Inputs {
+    return new SwapCall__Inputs(this);
+  }
+
+  get outputs(): SwapCall__Outputs {
+    return new SwapCall__Outputs(this);
+  }
+}
+
+export class SwapCall__Inputs {
+  _call: SwapCall;
+
+  constructor(call: SwapCall) {
+    this._call = call;
+  }
+
+  get _from(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class SwapCall__Outputs {
+  _call: SwapCall;
+
+  constructor(call: SwapCall) {
+    this._call = call;
   }
 }
 
@@ -476,11 +1878,11 @@ export class TransferCall__Inputs {
     this._call = call;
   }
 
-  get to(): Address {
+  get _to(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get amount(): BigInt {
+  get _value(): BigInt {
     return this._call.inputValues[1].value.toBigInt();
   }
 }
@@ -494,6 +1896,60 @@ export class TransferCall__Outputs {
 
   get value0(): boolean {
     return this._call.outputValues[0].value.toBoolean();
+  }
+}
+
+export class TransferByPartitionCall extends ethereum.Call {
+  get inputs(): TransferByPartitionCall__Inputs {
+    return new TransferByPartitionCall__Inputs(this);
+  }
+
+  get outputs(): TransferByPartitionCall__Outputs {
+    return new TransferByPartitionCall__Outputs(this);
+  }
+}
+
+export class TransferByPartitionCall__Inputs {
+  _call: TransferByPartitionCall;
+
+  constructor(call: TransferByPartitionCall) {
+    this._call = call;
+  }
+
+  get _partition(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
+  }
+
+  get _from(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+
+  get _to(): Address {
+    return this._call.inputValues[2].value.toAddress();
+  }
+
+  get _value(): BigInt {
+    return this._call.inputValues[3].value.toBigInt();
+  }
+
+  get _data(): Bytes {
+    return this._call.inputValues[4].value.toBytes();
+  }
+
+  get _operatorData(): Bytes {
+    return this._call.inputValues[5].value.toBytes();
+  }
+}
+
+export class TransferByPartitionCall__Outputs {
+  _call: TransferByPartitionCall;
+
+  constructor(call: TransferByPartitionCall) {
+    this._call = call;
+  }
+
+  get value0(): Bytes {
+    return this._call.outputValues[0].value.toBytes();
   }
 }
 
@@ -514,15 +1970,15 @@ export class TransferFromCall__Inputs {
     this._call = call;
   }
 
-  get from(): Address {
+  get _from(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get to(): Address {
+  get _to(): Address {
     return this._call.inputValues[1].value.toAddress();
   }
 
-  get amount(): BigInt {
+  get _value(): BigInt {
     return this._call.inputValues[2].value.toBigInt();
   }
 }

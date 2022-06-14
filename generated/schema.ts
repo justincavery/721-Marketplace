@@ -132,10 +132,6 @@ export class collection extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("totalSales", Value.fromI32(0));
-    this.set("totalVolume", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("topSale", Value.fromBigDecimal(BigDecimal.zero()));
   }
 
   save(): void {
@@ -317,9 +313,6 @@ export class token extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("collection", Value.fromString(""));
-    this.set("identifier", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
@@ -396,8 +389,6 @@ export class accountCollection extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("tokenCount", Value.fromI32(0));
   }
 
   save(): void {
@@ -475,12 +466,6 @@ export class transaction extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("timestamp", Value.fromI32(0));
-    this.set("blockNumber", Value.fromI32(0));
-    this.set("transactionFrom", Value.fromBytes(Bytes.empty()));
-    this.set("unmatchedTransferCount", Value.fromI32(0));
-    this.set("transfers", Value.fromStringArray(new Array(0)));
   }
 
   save(): void {
@@ -592,13 +577,6 @@ export class transfer extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("transaction", Value.fromString(""));
-    this.set("collection", Value.fromString(""));
-    this.set("token", Value.fromString(""));
-    this.set("timestamp", Value.fromI32(0));
-    this.set("blockNumber", Value.fromI32(0));
-    this.set("amount", Value.fromBigDecimal(BigDecimal.zero()));
   }
 
   save(): void {
@@ -736,11 +714,6 @@ export class sale extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("transaction", Value.fromString(""));
-    this.set("timestamp", Value.fromI32(0));
-    this.set("blockNumber", Value.fromI32(0));
-    this.set("amount", Value.fromBigDecimal(BigDecimal.zero()));
   }
 
   save(): void {
@@ -843,9 +816,6 @@ export class currency extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("name", Value.fromString(""));
-    this.set("symbol", Value.fromString(""));
   }
 
   save(): void {
@@ -905,12 +875,6 @@ export class hourlyCollectionSnapshot extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("collection", Value.fromString(""));
-    this.set("hourlyVolume", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("hourlyAvgSale", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("topSale", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("bottomSale", Value.fromBigDecimal(BigDecimal.zero()));
   }
 
   save(): void {
@@ -1011,12 +975,6 @@ export class dailyCollectionSnapshot extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("collection", Value.fromString(""));
-    this.set("dailyVolume", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("dailyAvgSale", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("topSale", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("bottomSale", Value.fromBigDecimal(BigDecimal.zero()));
   }
 
   save(): void {
@@ -1117,12 +1075,6 @@ export class weeklyCollectionSnapshot extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("collection", Value.fromString(""));
-    this.set("weeklyVolume", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("weeklyAvgSale", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("topSale", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("bottomSale", Value.fromBigDecimal(BigDecimal.zero()));
   }
 
   save(): void {

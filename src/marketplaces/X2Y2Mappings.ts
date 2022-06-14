@@ -4,21 +4,13 @@ import {
   currency,
 } from '../../generated/schema'
 
-import {
-  MatchTransferWithSale
-} from "../../src/utils/matchTransferSale"
-
-import {
-  EvProfit
-} from '../../generated/X2Y2/X2Y2'
-
-import { 
-  BigDecimal
-} from "@graphprotocol/graph-ts"
-import { ERC20Contracts } from '../graphprotocol-utils'
-
+import { MatchTransferWithSale} from "../../src/utils/matchTransferSale"
+import { EvInventory} from '../../generated/X2Y2/X2Y2_R1'
+import { BigDecimal} from "@graphprotocol/graph-ts"
+import { ERC20Contracts} from '../graphprotocol-utils'
+ 
 // TakerBid Handler starts here
-export function handleEvProfit(event: EvProfit): void {
+export function handleEvInventory(event: EvInventory): void {
   
   //1. load transaction
   let tx = transaction.load(event.transaction.hash.toHexString())
@@ -43,9 +35,7 @@ export function handleEvProfit(event: EvProfit): void {
         saleEntity.transaction   = tx.id
         saleEntity.currency      = currencyEntity.id
         saleEntity.platform      = 'X2Y2'
-        //X2Y2 emites the profit amount instead of the total price, added / 0.98 to get the full sale price
-        
-        saleEntity.amount        = event.params.amount.divDecimal(BigDecimal.fromString('1000000000000000000')).div(BigDecimal.fromString('0.98')) 
+        saleEntity.amount        = BigDecimal.fromString(event.params.item.price.divDecimal(BigDecimal.fromString('1000000000000000000')).toString())
         saleEntity.blockNumber   = event.block.number.toI32()
         saleEntity.timestamp     = event.block.timestamp.toI32()
         saleEntity.save()
@@ -76,4 +66,4 @@ export function handleEvProfit(event: EvProfit): void {
       }
   }
   }
-}
+} 
