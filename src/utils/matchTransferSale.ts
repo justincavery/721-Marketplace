@@ -71,7 +71,6 @@ export function MatchTransferWithSale(
                 hourlyCollectionSnapshotEntity.topSale            = constants.BIGDECIMAL_ZERO
                 hourlyCollectionSnapshotEntity.bottomSale         = constants.BIGDECIMAL_ZERO
 
-                hourlyCollectionSnapshotEntity.save()
               }
 
               // Updating daily total volume & top sale
@@ -113,8 +112,7 @@ export function MatchTransferWithSale(
                 dailyCollectionSnapshotEntity.dailyTransactions  = 0
                 dailyCollectionSnapshotEntity.topSale            = constants.BIGDECIMAL_ZERO
                 dailyCollectionSnapshotEntity.bottomSale         = constants.BIGDECIMAL_ZERO
-
-                dailyCollectionSnapshotEntity.save()
+                
               }
 
               // Updating daily total volume & top sale
@@ -157,7 +155,6 @@ export function MatchTransferWithSale(
                   weeklyCollectionSnapshotEntity.topSale             = constants.BIGDECIMAL_ZERO
                   weeklyCollectionSnapshotEntity.bottomSale          = constants.BIGDECIMAL_ZERO
 
-                  weeklyCollectionSnapshotEntity.save()
                 }
 
               // Updating weekly volume & top sale

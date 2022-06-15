@@ -189,10 +189,13 @@ type currency @entity {
   " Currency Address "
   id: ID! 
 
+  " Decimales for the currency "
   decimals: Int 
 
+  " currency name "
   name: String!
 
+  " currency symbol "
   symbol: String!
 
 }
@@ -214,7 +217,7 @@ type hourlyCollectionSnapshot @entity {
     " Number of hourly transactions "
     hourlyTransactions: Int
 
-    " Average sale amount for the day "
+    " Average sale amount for the hour "
     hourlyAvgSale: BigDecimal!
     
     " Hourly top sales "
@@ -264,13 +267,13 @@ type weeklyCollectionSnapshot @entity {
     " The collection address " 
     collection: collection!
     
-    " The monthly volume "
+    " The weekly volume "
     weeklyVolume: BigDecimal!
     
-    " Number of monthly transactions "
+    " Number of weekly transactions "
     weeklyTransactions: Int
 
-    " Average sale amount for the day "
+    " Average sale amount for the week "
     weeklyAvgSale: BigDecimal!
     
     " Weekly top sales "
@@ -283,7 +286,10 @@ type weeklyCollectionSnapshot @entity {
 
 type wethTransaction @entity {
 
-    " Hash for weth contained transaction "
+    " set to 1 for easy loading "
     id: ID!
+
+    " Hash for weth contained transaction "
+    transaction: String 
 
 }
