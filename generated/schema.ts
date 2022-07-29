@@ -1201,21 +1201,4 @@ export class wethTransaction extends Entity {
   set id(value: string) {
     this.set("id", Value.fromString(value));
   }
-
-  get transaction(): string | null {
-    let value = this.get("transaction");
-    if (!value || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
-  }
-
-  set transaction(value: string | null) {
-    if (!value) {
-      this.unset("transaction");
-    } else {
-      this.set("transaction", Value.fromString(<string>value));
-    }
-  }
 }

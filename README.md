@@ -34,6 +34,10 @@ Various Transaction Type examples:
 
 [Opensea APE Purchase](https://etherscan.io/tx/0x672d9d065d9a86e0e083d069a5809b7aacc53a46d0f4e67547495ade6ea0730c)
 
+[Seaport ETH Purchase](https://etherscan.io/tx/0x9c7088bb4ed88e5040bf6231517a5179087638d293a8a3120e6a6d05fdf4de39)
+
+[Seaport WETH Purchase](https://etherscan.io/tx/0xf188d4e29af2bae81a7f469c0a2fa0e1c0f8bc2a59b6138f234dda08e37ad903)
+
 # LooksRare:
 
 Various Transaction Type examples:
@@ -52,12 +56,16 @@ Interesting sweep transactions with cross platform sales noting to ensure it ind
 
 [multicontract transaction](https://etherscan.io/tx/0xa3ac2b2af60fa2a5af4d724e7bfb3d0cdcf4056a524bea40e40987d92cf527f3)
 
+[Seaport & LR Sweep](https://etherscan.io/tx/0x8feaf8fbd4e3b7f5f66282083d13afb2cee7759c512d980fc0cf43b3919ed5cd)
+
 
 # Contracts
 
 OpenSea v1 - 0x7be8076f4ea4a4ad08075c2508e481d6c946d12b (start block 5774644)
 
 Opensea V2 - 0x7f268357a8c2552623316e2562d90e642bb538e5 (start block 14120913)
+
+Seaport - 0x00000000006c3852cbEf3e08E8dF289169EdE581 (start block 14946474)
 
 LooksRare - 0x59728544B08AB483533076417FbBB2fD0B17CE3a (start block 13885625)
 

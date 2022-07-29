@@ -15,22 +15,13 @@ export function handleTransfer(event: Transfer): void {
      || event.transaction.to == Address.fromString('0x0a267cf51ef038fc00e71801f5a524aec06e4f07') //Genie
      || event.transaction.to == Address.fromString('0x83c8f28c26bf6aaca652df1dbbe0e1b56f8baba2') //GemSwapV2
     ) {
-        let wethTest = wethTransaction.load("1")
+        let wethTest = wethTransaction.load(event.transaction.hash.toHexString())
         if (!wethTest) {
-            let wethTest =  new wethTransaction("1")
-            wethTest.transaction = event.transaction.hash.toHexString()
+            let wethTest =  new wethTransaction(event.transaction.hash.toHexString())
 
             wethTest.save()
         }
-
-        if (wethTest) {
-            if (wethTest.transaction != event.transaction.hash.toHexString()) {
-                
-                wethTest.transaction = event.transaction.hash.toHexString() 
-
-                wethTest.save()
-            }
-        }
     }
+
 }
 

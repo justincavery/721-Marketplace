@@ -33,11 +33,15 @@ export function handleTransfer(event: TransferEvent): void {
 		let senderAddress  = account.load(event.params.from.toHexString())
 		if (!senderAddress) {
 			senderAddress = new account(event.params.from.toHexString())
+
+			senderAddress.save()
 		}
 		
 		let receiverAddress  = account.load(event.params.to.toHexString())
 		if (!receiverAddress) {
 			receiverAddress = new account(event.params.to.toHexString())
+
+			receiverAddress.save()
 		}		
 		
 		let senderAccountCollection = accountCollection.load(senderAddress.id + '-' + collection.id)
@@ -73,8 +77,6 @@ export function handleTransfer(event: TransferEvent): void {
 
 		collection.save()
 		token.save()
-		senderAddress.save()
-		receiverAddress.save()
 	
 		let transferEntity = new transfer(events.id(event))
 		transferEntity.transaction 			= transactions.log(event).id

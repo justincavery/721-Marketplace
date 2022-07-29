@@ -278,7 +278,7 @@ type weeklyCollectionSnapshot @entity {
     
     " Weekly top sales "
     topSale: BigDecimal!
-    
+
     " Weekly bottom sales "
     bottomSale: BigDecimal!
 
@@ -286,10 +286,7 @@ type weeklyCollectionSnapshot @entity {
 
 type wethTransaction @entity {
 
-    " set to 1 for easy loading "
-    id: ID!
-
     " Hash for weth contained transaction "
-    transaction: String 
+    id: ID!
 
 }
