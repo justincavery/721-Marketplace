@@ -1,6 +1,11 @@
-specVersion: 0.0.2
+specVersion: 0.0.5
 description: 721-MarketPlace
 repository: https://github.com/Data-Nexus/nft-sales-v2
+graft:
+  base: Qmccst5mbV5a6vT6VvJMLPKMAA1VRgT6NGbxkLL8eDRsE7
+  block: 14139150
+features:
+  - grafting
 schema:
   file: schema.graphql
 dataSources:
@@ -8,9 +13,8 @@ dataSources:
     name: IERC721
     network: mainnet
     source:
-      address: "0x23581767a106ae21c074b2276d25e5c3e136a68b"
       abi: IERC721
-      startBlock: 14591056
+      startBlock: 5774644
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -36,7 +40,7 @@ dataSources:
     source:
       address: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
       abi: ERC20Abi
-      startBlock: 14591056
+      startBlock: 5774644
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -56,7 +60,7 @@ dataSources:
     source:
       address: "0x7be8076f4ea4a4ad08075c2508e481d6c946d12b"
       abi: OpenSeaV1
-      startBlock: 14591056
+      startBlock: 5774644
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -81,7 +85,7 @@ dataSources:
     source:
       address: "0x7f268357A8c2552623316e2562D90e642bB538E5"
       abi: OpenSeaV2
-      startBlock: 14591056
+      startBlock: 14120913
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -100,13 +104,38 @@ dataSources:
             bytes32)
           handler: handleOSv1Sale
       file: OpenSeaV1\OpenSeaV1.wasm
+  - kind: ethereum/contract
+    name: SeaPort
+    network: mainnet
+    source:
+      address: "0x00000000006c3852cbef3e08e8df289169ede581"
+      abi: SeaPort
+      startBlock: 14946474
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - collection
+        - token
+        - sale
+      abis:
+        - name: SeaPort
+          file: SeaPort\abis\SeaPort.json
+        - name: ERC20
+          file: SeaPort\node_modules\@openzeppelin\contracts\build\contracts\ERC20.json
+      eventHandlers:
+        - event: OrderFulfilled(bytes32,indexed address,indexed
+            address,address,(uint8,address,uint256,uint256)[],(uint8,address,uint256,uint256,address)[])
+          handler: handleOrderFulfilled
+      file: SeaPort\SeaPort.wasm
   - kind: ethereum
     name: LooksRare
     network: mainnet
     source:
       address: "0x59728544B08AB483533076417FbBB2fD0B17CE3a"
       abi: LooksRare
-      startBlock: 14591056
+      startBlock: 13885625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -134,7 +163,7 @@ dataSources:
     source:
       address: "0x74312363e45dcaba76c59ec49a7aa8a65a67eed3"
       abi: X2Y2_R1
-      startBlock: 14591056
+      startBlock: 14139150
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

@@ -4,6 +4,8 @@ repository: https://github.com/Data-Nexus/nft-sales-v2
 graft:
   base: Qmccst5mbV5a6vT6VvJMLPKMAA1VRgT6NGbxkLL8eDRsE7
   block: 14139150
+features:
+  - grafting
 schema:
   file: ./schema.graphql
 dataSources:
