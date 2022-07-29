@@ -49,7 +49,12 @@
           "name":"amount",
           "type":"uint256"
         }
-        ],"indexed":false,"internalType":"struct SpentItem[]","name":"offer","type":"tuple[]"},
+        ],
+        "indexed":false,
+        "internalType":"struct SpentItem[]",
+        "name":"offer",
+        "type":"tuple[]"
+      },
     {"components":[
         {
           "internalType":"enum ItemType",

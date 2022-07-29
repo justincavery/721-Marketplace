@@ -57,6 +57,7 @@ dataSources:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
       file: ./src/utils/wethUtil.ts
+
    #### OpenSea Contracts ####
   - kind: ethereum/contract
     name: OpenSeaV1
@@ -132,6 +133,7 @@ dataSources:
       eventHandlers:
         - event: OrderFulfilled(bytes32,indexed address,indexed address,address,(uint8,address,uint256,uint256)[],(uint8,address,uint256,uint256,address)[])
           handler: handleOrderFulfilled
+          receipt: true
       file: ./src/marketplaces/SeaPortMappings.ts 
 
   #### LooksRare Contract ####
