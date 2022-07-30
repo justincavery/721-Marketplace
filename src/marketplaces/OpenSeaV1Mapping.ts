@@ -14,11 +14,11 @@ import {
 } from '../../generated/OpenseaV1/OpenSeaV1'
 
 import {
-	constants, ERC20Contracts
+	constants, ERC20Contracts, events
 } from '../../src/graphprotocol-utils'
 
 import { 
-  BigDecimal,Address
+  BigDecimal,Address, json
 } from "@graphprotocol/graph-ts"
 
 // TakerAsk Handler starts here
@@ -33,14 +33,22 @@ export function handleOSv1Sale(event: OrdersMatched): void {
     //3. create new sale entity (id = tx hash - eventId)  
     let saleEntity = sale.load(event.block.number.toString() + '-' + event.logIndex.toString())
     if (!saleEntity && tx.unmatchedTransferCount > 0) {
+      
+      // Assume default value of currency as phony ERC20      
+      let currencyAddress = Address.fromString('0xbadfeed000000000000000000000000000000000') //update to unknown ERC20
 
-      // Assume default value of currency as phony ERC20
-      let currencyAddress: Address = Address.fromString('0xbadfeed000000000000000000000000000000000') //update to unknown ERC20
-      
-      let wethTest = wethTransaction.load(event.transaction.hash.toHexString())
-      
-      // If there was a transfer of WETH assume the sale occurs in WETH
-      if (wethTest) { currencyAddress = Address.fromString('0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2')}
+      let _receipt = event.receipt
+      if (_receipt){
+        for (let index = 0; index < _receipt.logs.length; index++) {
+        
+        // If there was a transfer of WETH assume the sale occurs in WETH
+        if (currencyAddress = Address.fromString('0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'))          
+            {
+              currencyAddress = _receipt.logs[index].address
+            }
+        }
+      }
+
       //If the transaction value is > 0 then assume the sale occurs in ETH
       if (event.transaction.value != constants.BIGINT_ZERO || event.params.price == constants.BIGINT_ONE) {currencyAddress = Address.fromString(constants.ADDRESS_ZERO)}
 
@@ -48,12 +56,15 @@ export function handleOSv1Sale(event: OrdersMatched): void {
       let currencyEntity = currency.load(currencyAddress.toHexString())
         
       if (currencyEntity) {
+
+        let amountDecimals = constants.BIGINT_TEN.pow(currencyEntity.decimals)
+        
         //4. Assign currency address, amount, txId and platform to sale entity
         let saleEntity = new sale(event.block.number.toString() + '-' + event.logIndex.toString())
         saleEntity.transaction   = tx.id
         saleEntity.currency      = currencyEntity.id
         saleEntity.platform      = 'OpenSea'
-        saleEntity.amount        = event.params.price.divDecimal(BigDecimal.fromString('1000000000000000000')) 
+        saleEntity.amount        = event.params.price.divDecimal(BigDecimal.fromString(amountDecimals.toString()))
         saleEntity.blockNumber   = event.block.number.toI32()
         saleEntity.timestamp     = event.block.timestamp.toI32()
         saleEntity.save()

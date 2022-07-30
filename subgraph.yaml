@@ -2,7 +2,7 @@ specVersion: 0.0.5
 description: 721-MarketPlace
 repository: https://github.com/Data-Nexus/nft-sales-v2
 graft:
-  base: Qmccst5mbV5a6vT6VvJMLPKMAA1VRgT6NGbxkLL8eDRsE7
+  base: QmUK6ZBSonr33EHSLACF53E9qiYsiXVMa59F1kGXXMTHn2
   block: 14139150
 features:
   - grafting
@@ -14,11 +14,12 @@ dataSources:
     name: IERC721
     network: mainnet
     source:
+      address: "0xdb3b2e1f699caf230ee75bfbe7d97d70f81bc945"
       abi: IERC721
       startBlock: 5774644
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - transfer
@@ -36,27 +37,27 @@ dataSources:
           handler: handleTransfer
       file: ./src/eip721/index.ts
    
-   #### WETH Contact ####
-  - kind: ethereum/contract
-    name: WETH
-    network: mainnet
-    source:
-      address: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
-      abi: ERC20Abi
-      startBlock: 5774644
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      entities:
-        - wethTransaction
-      abis:
-        - name: ERC20Abi
-          file: ./abis/ERC20ABI.json
-      eventHandlers:
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
-      file: ./src/utils/wethUtil.ts
+  #  #### WETH Contact #### Commenting out to use transaction receipts
+  # - kind: ethereum/contract
+  #   name: WETH
+  #   network: mainnet
+  #   source:
+  #     address: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+  #     abi: ERC20Abi
+  #     startBlock: 5774644
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - wethTransaction
+  #     abis:
+  #       - name: ERC20Abi
+  #         file: ./abis/ERC20ABI.json
+  #     eventHandlers:
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #     file: ./src/utils/wethUtil.ts
 
    #### OpenSea Contracts ####
   - kind: ethereum/contract
@@ -68,7 +69,7 @@ dataSources:
       startBlock: 5774644
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - collection
@@ -82,6 +83,7 @@ dataSources:
       eventHandlers:
         - event: OrdersMatched(bytes32,bytes32,indexed address,indexed address,uint256,indexed bytes32)
           handler: handleOSv1Sale
+          receipt: true
       file: ./src/marketplaces/OpenSeaV1Mapping.ts
   - kind: ethereum/contract
     name: OpenSeaV2
@@ -92,7 +94,7 @@ dataSources:
       startBlock: 14120913
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - collection
@@ -106,6 +108,7 @@ dataSources:
       eventHandlers:
         - event: OrdersMatched(bytes32,bytes32,indexed address,indexed address,uint256,indexed bytes32)
           handler: handleOSv1Sale
+          receipt: true
        ##event is identical in v2
       file: ./src/marketplaces/OpenSeaV1Mapping.ts 
   
@@ -119,7 +122,7 @@ dataSources:
       startBlock: 14946474
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - collection
@@ -146,7 +149,7 @@ dataSources:
       startBlock: 13885625
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - collection
@@ -174,7 +177,7 @@ dataSources:
       startBlock: 14139150
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - collection

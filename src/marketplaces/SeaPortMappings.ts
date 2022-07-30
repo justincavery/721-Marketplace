@@ -45,17 +45,19 @@ if (tx){
     if (currencyEntity) { 
       let amountDecimals = 10 ** currencyEntity.decimals 
       
-      //4. sum the total amount
+      //4. sum the total amount for the sale
       let price = constants.BIGINT_ZERO
       for (let index = 0; index < event.params.offer.length; index++) {
-        price = price.plus(event.params.offer[index].amount)
+        
+          price = price.plus(event.params.offer[index].amount)
+
       }
 
       //5. Assign currency address, amount, txId and platform to sale entity
       let saleEntity           = new sale(event.block.number.toString() + '-' + event.logIndex.toString())
       saleEntity.transaction   = tx.id
       saleEntity.currency      = currencyEntity.id
-      saleEntity.platform      = 'SeaPort'
+      saleEntity.platform      = 'OpenSea'
       saleEntity.amount        = price.divDecimal(BigDecimal.fromString(amountDecimals.toString())) 
       saleEntity.blockNumber   = event.block.number.toI32()
       saleEntity.timestamp     = event.block.timestamp.toI32()

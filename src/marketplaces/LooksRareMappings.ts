@@ -14,11 +14,11 @@ import {
 } from '../../generated/LooksRare/LooksRare'
 
 import {
-  ERC20Contracts,
+  ERC20Contracts, constants
 } from '../../src/graphprotocol-utils'
 
 import { 
-  BigDecimal
+  BigDecimal, BigInt
 } from "@graphprotocol/graph-ts"
 
 // TakerBid Handler starts here
@@ -40,14 +40,14 @@ export function handleTakerBid(event: TakerBid): void {
 
       if (currencyEntity) {
         //Gather the decimals used in the currency transacted in
-        //let amountDecimals = bigInt.fromString((10 ** currencyEntity.decimals).toString())
+        let amountDecimals = constants.BIGINT_TEN.pow(currencyEntity.decimals)
 
         //4. Assign currency address, amount, txId and platform to sale entity
         let saleEntity           = new sale(event.block.number.toString() + '-' + event.logIndex.toString())
         saleEntity.transaction   = tx.id
         saleEntity.currency      = currencyEntity.id
         saleEntity.platform      = 'LooksRare'
-        saleEntity.amount        = event.params.price.divDecimal(BigDecimal.fromString('1000000000000000000')) 
+        saleEntity.amount        = event.params.price.divDecimal(BigDecimal.fromString(amountDecimals.toString()))
         saleEntity.blockNumber   = event.block.number.toI32()
         saleEntity.timestamp     = event.block.timestamp.toI32()
         saleEntity.save()
@@ -98,15 +98,16 @@ export function handleTakerAsk(event: TakerAsk): void {
         let currencyEntity = currency.load(event.params.currency.toHexString())
 
         if (currencyEntity) { 
-          //Gather the decimals used in the currency transacted in
-          let amountDecimals = 10 ** currencyEntity.decimals 
+          //Gather the decimals used in the currency transacted in 
+          let amountDecimals = constants.BIGINT_TEN.pow(currencyEntity.decimals)
           
           //4. Assign currency address, amount, txId and platform to sale entity
           let saleEntity           = new sale(event.block.number.toString() + '-' + event.logIndex.toString())
           saleEntity.transaction   = tx.id
           saleEntity.currency      = currencyEntity.id
           saleEntity.platform      = 'LooksRare'
-          saleEntity.amount        = event.params.price.divDecimal(BigDecimal.fromString('1000000000000000000')) 
+          //(BigDecimal.fromString('1000000000000000000')) 
+          saleEntity.amount        = event.params.price.divDecimal(BigDecimal.fromString(amountDecimals.toString()))
           saleEntity.blockNumber   = event.block.number.toI32()
           saleEntity.timestamp     = event.block.timestamp.toI32()
           saleEntity.save()

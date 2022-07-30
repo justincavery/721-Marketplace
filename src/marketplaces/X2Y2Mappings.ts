@@ -7,7 +7,7 @@ import {
 import { MatchTransferWithSale} from "../../src/utils/matchTransferSale"
 import { EvInventory} from '../../generated/X2Y2/X2Y2_R1'
 import { BigDecimal} from "@graphprotocol/graph-ts"
-import { ERC20Contracts} from '../graphprotocol-utils'
+import { ERC20Contracts, constants} from '../graphprotocol-utils'
  
 // TakerBid Handler starts here
 export function handleEvInventory(event: EvInventory): void {
@@ -28,14 +28,14 @@ export function handleEvInventory(event: EvInventory): void {
 
       if (currencyEntity) {
         //Gather the decimals used in the currency transacted in
-        let amountDecimals = 10 ** currencyEntity.decimals 
-      
+        let amountDecimals = constants.BIGINT_TEN.pow(currencyEntity.decimals)
+        
         //4. Assign currency address, amount, txId and platform to sale entity
         let saleEntity = new sale(event.block.number.toString() + '-' + event.logIndex.toString())
         saleEntity.transaction   = tx.id
         saleEntity.currency      = currencyEntity.id
         saleEntity.platform      = 'X2Y2'
-        saleEntity.amount        = BigDecimal.fromString(event.params.item.price.divDecimal(BigDecimal.fromString('1000000000000000000')).toString())
+        saleEntity.amount        = BigDecimal.fromString(event.params.item.price.divDecimal(BigDecimal.fromString(amountDecimals.toString())).toString())
         saleEntity.blockNumber   = event.block.number.toI32()
         saleEntity.timestamp     = event.block.timestamp.toI32()
         saleEntity.save()
