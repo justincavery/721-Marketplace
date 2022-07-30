@@ -1,6 +1,6 @@
 import {
-	sale,
-	transaction,
+  sale,
+  transaction,
   currency,
   wethTransaction,
 } from '../../generated/schema'
@@ -14,82 +14,81 @@ import {
 } from '../../generated/OpenseaV1/OpenSeaV1'
 
 import {
-	constants, ERC20Contracts, events
+  constants, ERC20Contracts, events
 } from '../../src/graphprotocol-utils'
 
-import { 
-  BigDecimal,Address, json
+import {
+  BigDecimal, Address, json
 } from "@graphprotocol/graph-ts"
 
 // TakerAsk Handler starts here
 export function handleOSv1Sale(event: OrdersMatched): void {
-  
+
   //1. load transaction
   let tx = transaction.load(event.transaction.hash.toHexString())
-  
+
   //2. nullcheck transaction entity (one should already exist for the transfer earlier in that) 
-  if (tx ){
+  if (tx) {
 
     //3. create new sale entity (id = tx hash - eventId)  
     let saleEntity = sale.load(event.block.number.toString() + '-' + event.logIndex.toString())
     if (!saleEntity && tx.unmatchedTransferCount > 0) {
-      
+
       // Assume default value of currency as phony ERC20      
       let currencyAddress = Address.fromString('0xbadfeed000000000000000000000000000000000') //update to unknown ERC20
 
       let _receipt = event.receipt
-      if (_receipt){
+      if (_receipt) {
         for (let index = 0; index < _receipt.logs.length; index++) {
-        
-        // If there was a transfer of WETH assume the sale occurs in WETH
-        if (currencyAddress = Address.fromString('0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'))          
-            {
-              currencyAddress = _receipt.logs[index].address
-            }
+
+          // If there was a transfer of WETH assume the sale occurs in WETH
+          if (currencyAddress = Address.fromString('0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2')) {
+            currencyAddress = _receipt.logs[index].address
+          }
         }
       }
 
       //If the transaction value is > 0 then assume the sale occurs in ETH
-      if (event.transaction.value != constants.BIGINT_ZERO || event.params.price == constants.BIGINT_ONE) {currencyAddress = Address.fromString(constants.ADDRESS_ZERO)}
+      if (event.transaction.value != constants.BIGINT_ZERO || event.params.price == constants.BIGINT_ONE) { currencyAddress = Address.fromString(constants.ADDRESS_ZERO) }
 
       ERC20Contracts.getERC20(currencyAddress)
       let currencyEntity = currency.load(currencyAddress.toHexString())
-        
+
       if (currencyEntity) {
 
         let amountDecimals = constants.BIGINT_TEN.pow(currencyEntity.decimals)
-        
+
         //4. Assign currency address, amount, txId and platform to sale entity
         let saleEntity = new sale(event.block.number.toString() + '-' + event.logIndex.toString())
-        saleEntity.transaction   = tx.id
-        saleEntity.currency      = currencyEntity.id
-        saleEntity.platform      = 'OpenSea'
-        saleEntity.amount        = event.params.price.divDecimal(BigDecimal.fromString(amountDecimals.toString()))
-        saleEntity.blockNumber   = event.block.number.toI32()
-        saleEntity.timestamp     = event.block.timestamp.toI32()
+        saleEntity.transaction = tx.id
+        saleEntity.currency = currencyEntity.id
+        saleEntity.platform = 'OpenSea'
+        saleEntity.amount = event.params.price.divDecimal(BigDecimal.fromString(amountDecimals.toString()))
+        saleEntity.blockNumber = event.block.number.toI32()
+        saleEntity.timestamp = event.block.timestamp.toI32()
         saleEntity.save()
-          
+
         //5. Assign sale.amount / transaction.unmatchedTransferCount to variable transferAmount to pass into transfer entities 
         // This will derives the amount per transfer (eg each nft's amount in a bundle with 2 NFT's is the total price divided by 2.)
-        let transferAmount      = saleEntity.amount.div(BigDecimal.fromString(tx.unmatchedTransferCount.toString()))  
-        
+        let transferAmount = saleEntity.amount.div(BigDecimal.fromString(tx.unmatchedTransferCount.toString()))
+
         //6. Using unmatchedTransferId loop through the transfer entities and apply the transferAmount and assign saleId , 
         //reducing the unmatchedTransferCount by 1. save transfer update on each loop.
-        if(tx.transfers && transferAmount && tx.id && saleEntity.id) {
-                  
+        if (tx.transfers && transferAmount && tx.id && saleEntity.id) {
+
           let array = tx.transfers
           for (let index = 0; index < array.length; index++) {
 
-            let trId = array[index]            
+            let trId = array[index]
 
             MatchTransferWithSale(
-              trId, 
+              trId,
               transferAmount,
               tx.id,
               saleEntity.id,
               currencyEntity.symbol,
             )
-              
+
           }
         }
       }
