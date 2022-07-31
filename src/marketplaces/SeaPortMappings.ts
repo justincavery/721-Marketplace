@@ -2,6 +2,7 @@ import {
   sale,
   transaction,
   currency,
+  transfer,
 } from '../../generated/schema'
 
 import {
@@ -24,6 +25,7 @@ import {
 
 import {
 	Transfer       as TransferEvent,
+  Transfer__Params
 } from '../../generated/IERC721/IERC721'
 
 // TakerAsk Handler starts here
@@ -34,21 +36,27 @@ export function handleOrderFulfilled(event: OrderFulfilled): void {
   if (_receipt) {
 
     let _topic0 = Address.fromString('0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef')
+    let _identifier = event.params.offer[0].identifier
+    let _token = event.params.offer[0].token
     //For each event in the _receipt.logs check if: 
     for (let index = 0; index < event.params.offer.length; index++) {
         
       //the topic0 is the correct event signature
       //the transferred token's collectionId & identifier belongs to the OrderFulfilled event that is being processed
       if ( _receipt.logs[index].topics[0] == _topic0
-        && _receipt.logs[index].topics[3].toHex == event.params.offer[0].identifier.toHex
-        && _receipt.logs[index].address.toHex == event.params.offer[0].token.toHex) {
+        && BigInt.fromByteArray(_receipt.logs[index].topics[3]) == _identifier
+        && _receipt.logs[index].address == _token) {
           
-          //Create faux TransferEvent
-          let _transferEvent: TransferEvent 
-          _transferEvent.address = _receipt.logs[index].address
+          let _transferEvent: TransferEvent  
+          _transferEvent.address              = _receipt.logs[index].address
+          _transferEvent.params.from          = _receipt.logs[index].topics[1]
+          _transferEvent.params.to            = _receipt.logs[index].topics[2]
+          _transferEvent.params.tokenId       = _receipt.logs[index].topics[3] 
+          _transferEvent.logIndex             = _receipt.logs[index].logIndex
+          _transferEvent.transactionLogIndex  = _receipt.logs[index].transactionLogIndex
           
           //run handleTransfer
-          //handleTransfer(_transferEvent)
+          handleTransfer(_transferEvent)
       }
     }
   }
@@ -67,7 +75,7 @@ export function handleOrderFulfilled(event: OrderFulfilled): void {
       let currencyEntity = currency.load(event.params.offer[0].token.toHexString())
 
       if (currencyEntity) {
-        let amountDecimals = 10 ** currencyEntity.decimals
+        let amountDecimals = constants.BIGINT_TEN.pow(currencyEntity.decimals as u8)
 
         //4. sum the total amount for the sale
         let price = constants.BIGINT_ZERO

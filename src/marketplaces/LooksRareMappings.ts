@@ -40,7 +40,7 @@ export function handleTakerBid(event: TakerBid): void {
 
       if (currencyEntity) {
         //Gather the decimals used in the currency transacted in
-        let amountDecimals = constants.BIGINT_TEN.pow(currencyEntity.decimals)
+        let amountDecimals = constants.BIGINT_TEN.pow(currencyEntity.decimals as u8)
 
         //4. Assign currency address, amount, txId and platform to sale entity
         let saleEntity = new sale(event.block.number.toString() + '-' + event.logIndex.toString())
@@ -99,7 +99,7 @@ export function handleTakerAsk(event: TakerAsk): void {
 
       if (currencyEntity) {
         //Gather the decimals used in the currency transacted in 
-        let amountDecimals = constants.BIGINT_TEN.pow(currencyEntity.decimals)
+        let amountDecimals = constants.BIGINT_TEN.pow(currencyEntity.decimals as u8)
 
         //4. Assign currency address, amount, txId and platform to sale entity
         let saleEntity = new sale(event.block.number.toString() + '-' + event.logIndex.toString())
