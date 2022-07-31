@@ -34,9 +34,9 @@ Various Transaction Type examples:
 
 [Opensea APE Purchase](https://etherscan.io/tx/0x672d9d065d9a86e0e083d069a5809b7aacc53a46d0f4e67547495ade6ea0730c)
 
-[Seaport ETH Purchase](https://etherscan.io/tx/0x9c7088bb4ed88e5040bf6231517a5179087638d293a8a3120e6a6d05fdf4de39)
+[Seaport ETH Purchase](https://etherscan.io/tx/0xdd01be9ce5e65c311ac7a46d01fc25006d658e7bcb45841d05085af93f02b626)
 
-[Seaport WETH Purchase](https://etherscan.io/tx/0xf188d4e29af2bae81a7f469c0a2fa0e1c0f8bc2a59b6138f234dda08e37ad903)
+[Seaport WETH Bundle Purchase](https://etherscan.io/tx/0xbd635659031389258d6bb8ff9634d0bdca6786ce86306d5ae08eb910f60b67c1)
 
 # LooksRare:
 

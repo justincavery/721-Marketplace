@@ -14,71 +14,81 @@ import {
 } from '../../generated/SeaPort/SeaPort'
 
 import {
-  constants, ERC20Contracts, transactions
+  constants, ERC20Contracts
 } from '../../src/graphprotocol-utils'
 
 import { handleTransfer } from '../eip721/index'
 
 import {
-  BigDecimal, Address, BigInt, ethereum
+  BigDecimal, Address, BigInt, ethereum, log, Bytes
 } from "@graphprotocol/graph-ts"
 
 import {
 	Transfer       as TransferEvent,
-  Transfer__Params
 } from '../../generated/IERC721/IERC721'
 
 // TakerAsk Handler starts here
 export function handleOrderFulfilled(event: OrderFulfilled): void {
 
+  log.warning("Started handleOrderFulfilled. Transaction {}",[event.transaction.hash.toHexString()])
+
   //Use transaction receipts to check if the transfer has already been logged
   let _receipt = event.receipt 
   if (_receipt) {
 
-    let _topic0 = Address.fromString('0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef')
+    let _topic0 = Bytes.fromHexString('0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef')
     let _identifier = event.params.offer[0].identifier
-    let _token = event.params.offer[0].token
-    //For each event in the _receipt.logs check if: 
-    for (let index = 0; index < event.params.offer.length; index++) {
+    let _token = Address.fromString('0xa5fb4e920c30a4a8158521783e527974ec6aee85') //event.params.offer[0].token
+
+    //For each event in the _receipt.logs loop through the beow logic: 
+    log.warning("Index {}",[_receipt.logs.length.toString()])
+    
+    for (let index = 0; index < _receipt.logs.length; index++) {
+      
+      log.warning("event {}, Topics {}",[_receipt.logs[index].logIndex.toString(),_receipt.logs[index].topics.length.toString()])
+      //Verify that there are 4 topics (0-3) for standard 721 Transfer
+      //Verify topic0 is the correct event signature for 721 Transfer
+      if ( _receipt.logs[index].topics.length == 4 && _receipt.logs[index].topics[0] == _topic0) {
         
-      //the topic0 is the correct event signature
-      //the transferred token's collectionId & identifier belongs to the OrderFulfilled event that is being processed
-      if ( _receipt.logs[index].topics[0] == _topic0
-        && BigInt.fromUnsignedBytes(_receipt.logs[index].topics[3]) == _identifier
-        && _receipt.logs[index].address == _token) {
+        log.warning("token Identifier {}, _identifier {}",[BigInt.fromUnsignedBytes(_receipt.logs[index].topics[3]).toString(), _identifier.toString()])
+        //the transferred token's collectionId & identifier belongs to the OrderFulfilled event that is being processed
+        if (BigInt.fromUnsignedBytes(_receipt.logs[index].topics[3]) == _identifier && _receipt.logs[index].address == _token) {
 
-          // let _from = Address.fromBytes(_receipt.logs[index].topics[1])         
-          // let _to = Address.fromBytes(_receipt.logs[index].topics[2])            
-          // let _tokenId = BigInt.fromUnsignedBytes(_receipt.logs[index].topics[3])
+            // let _from = Address.fromBytes(_receipt.logs[index].topics[1])         
+            // let _to = Address.fromBytes(_receipt.logs[index].topics[2])            
+            // let _tokenId = BigInt.fromUnsignedBytes(_receipt.logs[index].topics[3])
 
-           let _FromEventParam = new ethereum.EventParam(
-           "from", ethereum.Value.fromBytes(_receipt.logs[index].topics[1]))            //params.from
-          
-           let _ToEventParam = new ethereum.EventParam (
-           "to", ethereum.Value.fromBytes(_receipt.logs[index].topics[2]))              //params.to
-          
-           let _tokenIdEventParam = new ethereum.EventParam (
-           "tokenId", ethereum.Value.fromBytes(_receipt.logs[index].topics[3]))  //params.tokenId
 
-          let _EventParam = new Array<ethereum.EventParam>()
+            let _FromEventParam = new ethereum.EventParam(
+            "from", ethereum.Value.fromBytes(_receipt.logs[index].topics[1]))            //params.from
+            
+            let _ToEventParam = new ethereum.EventParam (
+            "to", ethereum.Value.fromBytes(_receipt.logs[index].topics[2]))              //params.to
+            
+            let _tokenIdEventParam = new ethereum.EventParam (
+            "tokenId", ethereum.Value.fromBytes(_receipt.logs[index].topics[3]))  //params.tokenId
 
-          _EventParam.push(_FromEventParam)
-          _EventParam.push(_ToEventParam)
-          _EventParam.push(_tokenIdEventParam)
-          
-          var _transferEvent = new TransferEvent(  
-          _receipt.logs[index].address,              //Address
-          _receipt.logs[index].logIndex,             //logIndex
-          _receipt.logs[index].transactionLogIndex,  //transactionLogIndex
-          _receipt.logs[index].logType,              //logType
-          event.block,                               //block
-          event.transaction,                         //transaction
-          _EventParam,                               //parameters
-          _receipt                                   //receipt
-          )
+            let _EventParam = new Array<ethereum.EventParam>()
 
-          //run handleTransfer
-          handleTransfer(_transferEvent)
+            _EventParam.push(_FromEventParam)
+            _EventParam.push(_ToEventParam)
+            _EventParam.push(_tokenIdEventParam)
+            
+            var _transferEvent = new TransferEvent(  
+            _receipt.logs[index].address,              //Address
+            _receipt.logs[index].logIndex,             //logIndex
+            _receipt.logs[index].transactionLogIndex,  //transactionLogIndex
+            _receipt.logs[index].logType,              //logType
+            event.block,                               //block
+            event.transaction,                         //transaction
+            _EventParam,                               //parameters
+            _receipt                                   //receipt
+            )
+
+            //run handleTransfer
+            log.warning("Run handleTransfer. Transaction {}",[event.transaction.hash.toString()])
+            handleTransfer(_transferEvent)
+        }
       }
     }
   }
