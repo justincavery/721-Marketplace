@@ -20,7 +20,7 @@ import {
 import { handleTransfer } from '../eip721/index'
 
 import {
-  BigDecimal, Address, BigInt
+  BigDecimal, Address, BigInt, ethereum
 } from "@graphprotocol/graph-ts"
 
 import {
@@ -44,17 +44,39 @@ export function handleOrderFulfilled(event: OrderFulfilled): void {
       //the topic0 is the correct event signature
       //the transferred token's collectionId & identifier belongs to the OrderFulfilled event that is being processed
       if ( _receipt.logs[index].topics[0] == _topic0
-        && BigInt.fromByteArray(_receipt.logs[index].topics[3]) == _identifier
+        && BigInt.fromUnsignedBytes(_receipt.logs[index].topics[3]) == _identifier
         && _receipt.logs[index].address == _token) {
+
+          // let _from = Address.fromBytes(_receipt.logs[index].topics[1])         
+          // let _to = Address.fromBytes(_receipt.logs[index].topics[2])            
+          // let _tokenId = BigInt.fromUnsignedBytes(_receipt.logs[index].topics[3])
+
+           let _FromEventParam = new ethereum.EventParam(
+           "from", ethereum.Value.fromBytes(_receipt.logs[index].topics[1]))            //params.from
           
-          let _transferEvent: TransferEvent  
-          _transferEvent.address              = _receipt.logs[index].address
-          _transferEvent.params.from          = _receipt.logs[index].topics[1]
-          _transferEvent.params.to            = _receipt.logs[index].topics[2]
-          _transferEvent.params.tokenId       = _receipt.logs[index].topics[3] 
-          _transferEvent.logIndex             = _receipt.logs[index].logIndex
-          _transferEvent.transactionLogIndex  = _receipt.logs[index].transactionLogIndex
+           let _ToEventParam = new ethereum.EventParam (
+           "to", ethereum.Value.fromBytes(_receipt.logs[index].topics[2]))              //params.to
           
+           let _tokenIdEventParam = new ethereum.EventParam (
+           "tokenId", ethereum.Value.fromBytes(_receipt.logs[index].topics[3]))  //params.tokenId
+
+          let _EventParam = new Array<ethereum.EventParam>()
+
+          _EventParam.push(_FromEventParam)
+          _EventParam.push(_ToEventParam)
+          _EventParam.push(_tokenIdEventParam)
+          
+          var _transferEvent = new TransferEvent(  
+          _receipt.logs[index].address,              //Address
+          _receipt.logs[index].logIndex,             //logIndex
+          _receipt.logs[index].transactionLogIndex,  //transactionLogIndex
+          _receipt.logs[index].logType,              //logType
+          event.block,                               //block
+          event.transaction,                         //transaction
+          _EventParam,                               //parameters
+          _receipt                                   //receipt
+          )
+
           //run handleTransfer
           handleTransfer(_transferEvent)
       }

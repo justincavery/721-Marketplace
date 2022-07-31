@@ -23,6 +23,7 @@ import {
 import { store } from '@graphprotocol/graph-ts'
 
 export function handleTransfer(event: TransferEvent): void {
+  
   let _transferEntity = transfer.load(events.id(event))	
   if (!_transferEntity) {
 	
