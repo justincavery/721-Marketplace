@@ -14,10 +14,10 @@ dataSources:
     name: IERC721
     network: mainnet
     source:
-      address: "0xa5fb4e920c30a4a8158521783e527974ec6aee85"
+      address: "0x4591c791790f352685a29111eca67abdc878863e"
       abi: IERC721
       #startBlock: 5774644
-      startBlock: 15215881
+      startBlock: 15200733
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -60,60 +60,60 @@ dataSources:
   #         handler: handleTransfer
   #     file: ./src/utils/wethUtil.ts
 
-   #### OpenSea Contracts ####
-  - kind: ethereum/contract
-    name: OpenSeaV1
-    network: mainnet
-    source:
-      address: "0x7be8076f4ea4a4ad08075c2508e481d6c946d12b"
-      abi: OpenSeaV1
-      #startBlock: 5774644
-      startBlock: 15215881 
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - collection
-        - token
-        - sale
-      abis:
-        - name: OpenSeaV1
-          file: ./abis/OpenSeaV1.json
-        - name: ERC20
-          file: ./node_modules/@openzeppelin/contracts/build/contracts/ERC20.json             
-      eventHandlers:
-        - event: OrdersMatched(bytes32,bytes32,indexed address,indexed address,uint256,indexed bytes32)
-          handler: handleOSv1Sale
-          receipt: true
-      file: ./src/marketplaces/OpenSeaV1Mapping.ts
-  - kind: ethereum/contract
-    name: OpenSeaV2
-    network: mainnet
-    source:
-      address: "0x7f268357A8c2552623316e2562D90e642bB538E5"
-      abi: OpenSeaV2
-      #startBlock: 14120913
-      startBlock: 15215881 
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - collection
-        - token
-        - sale
-      abis:
-        - name: OpenSeaV2
-          file: ./abis/OpenSeaV2.json   
-        - name: ERC20
-          file: ./node_modules/@openzeppelin/contracts/build/contracts/ERC20.json             
-      eventHandlers:
-        - event: OrdersMatched(bytes32,bytes32,indexed address,indexed address,uint256,indexed bytes32)
-          handler: handleOSv1Sale
-          receipt: true
-       ##event is identical in v2
-      file: ./src/marketplaces/OpenSeaV1Mapping.ts 
+  #  #### OpenSea Contracts ####
+  # - kind: ethereum/contract
+  #   name: OpenSeaV1
+  #   network: mainnet
+  #   source:
+  #     address: "0x7be8076f4ea4a4ad08075c2508e481d6c946d12b"
+  #     abi: OpenSeaV1
+  #     #startBlock: 5774644
+  #     startBlock: 15196049 
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - collection
+  #       - token
+  #       - sale
+  #     abis:
+  #       - name: OpenSeaV1
+  #         file: ./abis/OpenSeaV1.json
+  #       - name: ERC20
+  #         file: ./node_modules/@openzeppelin/contracts/build/contracts/ERC20.json             
+  #     eventHandlers:
+  #       - event: OrdersMatched(bytes32,bytes32,indexed address,indexed address,uint256,indexed bytes32)
+  #         handler: handleOSv1Sale
+  #         receipt: true
+  #     file: ./src/marketplaces/OpenSeaV1Mapping.ts
+  # - kind: ethereum/contract
+  #   name: OpenSeaV2
+  #   network: mainnet
+  #   source:
+  #     address: "0x7f268357A8c2552623316e2562D90e642bB538E5"
+  #     abi: OpenSeaV2
+  #     #startBlock: 14120913
+  #     startBlock: 15196049 
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - collection
+  #       - token
+  #       - sale
+  #     abis:
+  #       - name: OpenSeaV2
+  #         file: ./abis/OpenSeaV2.json   
+  #       - name: ERC20
+  #         file: ./node_modules/@openzeppelin/contracts/build/contracts/ERC20.json             
+  #     eventHandlers:
+  #       - event: OrdersMatched(bytes32,bytes32,indexed address,indexed address,uint256,indexed bytes32)
+  #         handler: handleOSv1Sale
+  #         receipt: true
+  #      ##event is identical in v2
+  #     file: ./src/marketplaces/OpenSeaV1Mapping.ts 
   
   #### OpenSea SeaPort Contract ####
   - kind: ethereum/contract
@@ -123,7 +123,7 @@ dataSources:
       address: "0x00000000006c3852cbef3e08e8df289169ede581"
       abi: SeaPort
       #startBlock: 14946474
-      startBlock: 15215881 
+      startBlock: 15200733 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -143,58 +143,58 @@ dataSources:
           receipt: true
       file: ./src/marketplaces/SeaPortMappings.ts 
 
-  #### LooksRare Contract ####
-  - kind: ethereum
-    name: LooksRare
-    network: mainnet
-    source:
-      address: "0x59728544B08AB483533076417FbBB2fD0B17CE3a"
-      abi: LooksRare
-      #startBlock: 13885625
-      startBlock: 15215881 
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - collection
-        - token
-        - sale
-      abis:
-        - name: LooksRare
-          file: ./abis/LooksRare.json
-        - name: ERC20
-          file: ./node_modules/@openzeppelin/contracts/build/contracts/ERC20.json
-      eventHandlers:
-        - event: TakerAsk(bytes32,uint256,indexed address,indexed address,indexed address,address,address,uint256,uint256,uint256)
-          handler: handleTakerAsk
-        - event: TakerBid(bytes32,uint256,indexed address,indexed address,indexed address,address,address,uint256,uint256,uint256)
-          handler: handleTakerBid
-      file: ./src/marketplaces/LooksRareMappings.ts
+  # #### LooksRare Contract ####
+  # - kind: ethereum
+  #   name: LooksRare
+  #   network: mainnet
+  #   source:
+  #     address: "0x59728544B08AB483533076417FbBB2fD0B17CE3a"
+  #     abi: LooksRare
+  #     #startBlock: 13885625
+  #     startBlock: 15196049 
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - collection
+  #       - token
+  #       - sale
+  #     abis:
+  #       - name: LooksRare
+  #         file: ./abis/LooksRare.json
+  #       - name: ERC20
+  #         file: ./node_modules/@openzeppelin/contracts/build/contracts/ERC20.json
+  #     eventHandlers:
+  #       - event: TakerAsk(bytes32,uint256,indexed address,indexed address,indexed address,address,address,uint256,uint256,uint256)
+  #         handler: handleTakerAsk
+  #       - event: TakerBid(bytes32,uint256,indexed address,indexed address,indexed address,address,address,uint256,uint256,uint256)
+  #         handler: handleTakerBid
+  #     file: ./src/marketplaces/LooksRareMappings.ts
 
-  #### X2Y2 Contract ####
-  - kind: ethereum
-    name: X2Y2
-    network: mainnet
-    source:
-      address: "0x74312363e45dcaba76c59ec49a7aa8a65a67eed3"
-      abi: X2Y2_R1
-      #startBlock: 14139150
-      startBlock: 15215881 
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - collection
-        - token
-        - sale
-      abis:
-        - name: X2Y2_R1
-          file: ./abis/X2Y2_R1.json
-        - name: ERC20
-          file: ./abis/ERC20Abi.json
-      eventHandlers:
-        - event: EvInventory(indexed bytes32,address,address,uint256,uint256,uint256,uint256,uint256,address,bytes,(uint256,bytes),(uint8,uint256,uint256,uint256,bytes32,address,bytes,uint256,uint256,uint256,(uint256,address)[]))
-          handler: handleEvInventory
-      file: ./src/marketplaces/X2Y2Mappings.ts
+  # #### X2Y2 Contract ####
+  # - kind: ethereum
+  #   name: X2Y2
+  #   network: mainnet
+  #   source:
+  #     address: "0x74312363e45dcaba76c59ec49a7aa8a65a67eed3"
+  #     abi: X2Y2_R1
+  #     #startBlock: 14139150
+  #     startBlock: 15196049 
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - collection
+  #       - token
+  #       - sale
+  #     abis:
+  #       - name: X2Y2_R1
+  #         file: ./abis/X2Y2_R1.json
+  #       - name: ERC20
+  #         file: ./abis/ERC20Abi.json
+  #     eventHandlers:
+  #       - event: EvInventory(indexed bytes32,address,address,uint256,uint256,uint256,uint256,uint256,address,bytes,(uint256,bytes),(uint8,uint256,uint256,uint256,bytes32,address,bytes,uint256,uint256,uint256,(uint256,address)[]))
+  #         handler: handleEvInventory
+  #     file: ./src/marketplaces/X2Y2Mappings.ts
